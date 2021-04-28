@@ -126,20 +126,14 @@
           mdi-pencil
         </v-icon>
       </template>
-      <template v-slot:no-data>
-        <v-btn
-          color="primary"
-          @click="initialize"
-        >
-          Reset
-        </v-btn>
-      </template>
     </v-data-table>
   </v-app>
 </template>
 
 <script>
 import axios from 'axios';
+
+const baseURL = "http://localhost:3000/vaccinations"
 
   export default {
     data: () => ({
@@ -204,13 +198,9 @@ import axios from 'axios';
       },
     },
 
-    created () {
-      this.initialize()
-    },
 
     methods: {
-      
-
+    
       //Implement Transfer to an other Hospital
       transferItem () {
         
