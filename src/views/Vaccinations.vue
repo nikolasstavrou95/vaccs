@@ -139,6 +139,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
   export default {
     data: () => ({
@@ -158,17 +159,26 @@
         { text: '', value: 'actions', sortable: false },
       ],
       vaccinations: [],
+      async created() {
+        try {
+          const res = await axios.get(`http://localhost:3000/vaccinations`)
+
+          this.vaccinations = res.data;
+        } catch(e) {
+          console.error(e)
+        }
+      },
       editedIndex: -1,
       editedItem: {
         hospital: '',
-        patint: 0,
+        patient: 0,
         vaccine: 0,
         date: 0,
         status: 0,
       },
       defaultItem: {
         hospital: '',
-        patint: 0,
+        patient: 0,
         vaccine: 0,
         date: 0,
         status: 0,
@@ -199,30 +209,7 @@
     },
 
     methods: {
-      initialize () {
-        this.vaccinations = [
-          {
-            hospital: 'Erythros Stavros',
-            patient: 'John Booker',
-            vaccine: 'Pfizer',
-            date: '24/07/2021',
-            status: 'Pending',
-          },
-          {
-            hospital: 'Evagelismos',
-            patient: 'Giannis Giannakis',
-            vaccine: 'Astra Zeneca',
-            date: '04/05/2021',
-            status: 'Completed',
-          },{
-            hospital: 'Sotiria',
-            patient: 'Maria Mary',
-            vaccine: 'Pfizer',
-            date: '12/06/2021',
-            status: 'Canceled',
-          },
-        ]
-      },
+      
 
       //Implement Transfer to an other Hospital
       transferItem () {
@@ -254,7 +241,7 @@
           this.editedItem = Object.assign({}, this.defaultItem)
           this.editedIndex = -1
         })
-      },
+       },
 
       save () {
         if (this.editedIndex > -1) {
