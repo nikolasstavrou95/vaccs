@@ -3,7 +3,7 @@
     <v-data-table
       :headers="headers"
       :items="vaccinations"
-      sort-by="calories"
+      sort-by="date"
       class="elevation-1"
     >
       <template v-slot:top>
@@ -125,12 +125,6 @@
         >
           mdi-pencil
         </v-icon>
-        <v-icon
-          small
-          @click="deleteItem(item)"
-        >
-          mdi-delete
-        </v-icon>
       </template>
       <template v-slot:no-data>
         <v-btn
@@ -230,16 +224,15 @@
         ]
       },
 
+      //Implement Transfer to an other Hospital
+      transferItem () {
+        
+      },
+
       editItem (item) {
         this.editedIndex = this.vaccinations.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
-      },
-
-      deleteItem (item) {
-        this.editedIndex = this.vaccinations.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialogDelete = true
       },
 
       deleteItemConfirm () {
