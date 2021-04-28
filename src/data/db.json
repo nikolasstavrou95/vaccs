@@ -1,0 +1,10 @@
+
+{
+    "vaccinations": [
+      { "id": 1, "hospital": "Erikos", "patient": "Nikos Nik", "date": "15/07/2021", "status": "completed" },
+      { "id": 1, "hospital": "Sismanoglio", "patient": "Cobra Mansa", "date": "03/10/2021", "status": "pending" },
+      { "id": 1, "hospital": "Erikos Ntinan", "patient": "Tati Tatiana", "date": "17/09/2021", "status": "pending" },
+      { "id": 1, "hospital": "Swthria", "patient": "Claudio Costa", "date": "01/08/2021", "status": "pending" },
+      { "id": 1, "hospital": "Evagelismos", "patient": "Babis Babinos", "date": "26/10/2021", "status": "pending" }
+    ]
+}
