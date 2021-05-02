@@ -8,7 +8,7 @@
     >
       <template v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="transferVaccination(item.id)">mdi-account-arrow-right</v-icon>
-        <v-icon small @click="editVaccination(item.id)">mdi-pencil</v-icon>
+        <v-icon small @click="editVaccination(item)">mdi-pencil</v-icon>
       </template>  
     </v-data-table>
   </v-app>
@@ -77,8 +77,8 @@ export default {
         });
     },
 
-    editTutorial(id) {
-      this.$router.push({ name: "vaccination-details", params: { id: id } });
+    editVaccination(item) {
+        console.log("hi!");
     },
 
     deleteVaccination(id) {
