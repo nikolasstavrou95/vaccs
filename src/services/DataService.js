@@ -14,6 +14,7 @@ class DataService {
   }
 
   update(id, data) {
+    console.log("Hi" + id);
     return http.put(`/vaccinations/${id}`, data);
   }
 

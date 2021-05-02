@@ -120,7 +120,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                  <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                  <v-btn color="blue darken-1" text @click="deleteVaccinationConfirm">OK</v-btn>
                   <v-spacer></v-spacer>
                 </v-card-actions>
               </v-card>
@@ -272,6 +272,7 @@ import DataService from "../services/DataService";
     save () {
       if (this.editedIndex > -1) {
         Object.assign(this.vaccinations[this.editedIndex], this.editedVaccination)
+        DataService.update( 1 , this.editedVaccination); //Have to find a way to select ids
       } else {
         this.vaccinations.push(this.editedVaccination)
       }

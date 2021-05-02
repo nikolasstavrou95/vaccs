@@ -1,10 +1,44 @@
-
 {
-    "vaccinations": [
-      { "id": 1, "hospital": "Erikos", "patient": "Nikos Nik", "vaccine": "Pfizer", "date": "15/07/2021", "status": "completed" },
-      { "id": 1, "hospital": "Sismanoglio", "patient": "Cobra Mansa","vaccine": "AstraZenece", "date": "03/10/2021", "status": "pending" },
-      { "id": 1, "hospital": "Erikos Ntinan", "patient": "Tati Tatiana","vaccine": "Pfizer", "date": "17/09/2021", "status": "pending" },
-      { "id": 1, "hospital": "Swthria", "patient": "Claudio Costa","vaccine": "Pfizer", "date": "01/08/2021", "status": "pending" },
-      { "id": 1, "hospital": "Evagelismos", "patient": "Babis Babinos","vaccine": "AstraZenece", "date": "26/10/2021", "status": "pending" }
-    ]
+  "vaccinations": [
+    {
+      "id": 1,
+      "hospital": "Swthria",
+      "patient": "Claudio Costa",
+      "vaccine": "Pfizer",
+      "date": "01/08/2021",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "hospital": "Erikos Ntinan",
+      "patient": "Mestra Tatiana",
+      "vaccine": "Pfizer",
+      "date": "17/09/2021",
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "hospital": "Erikos Ntinan",
+      "patient": "Tati Tatiana",
+      "vaccine": "Pfizer",
+      "date": "17/09/2021",
+      "status": "pending"
+    },
+    {
+      "id": 4,
+      "hospital": "Evagelismos",
+      "patient": "Bab Babinos",
+      "vaccine": "AstraZenece",
+      "date": "26/10/2021",
+      "status": "pending"
+    },
+    {
+      "id": 5,
+      "hospital": "Evagelismos",
+      "patient": "Babis Babinos",
+      "vaccine": "AstraZenece",
+      "date": "26/10/2021",
+      "status": "pending"
+    }
+  ]
 }
