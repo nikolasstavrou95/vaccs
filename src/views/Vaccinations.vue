@@ -240,6 +240,7 @@ import DataService from "../services/DataService";
     deleteVaccinationConfirm () {
       this.vaccinations.splice(this.editedIndex, 1)
       this.closeDelete()
+      DataService.delete(1); //Have to find a way to pass the id
     },
 
     close () {
@@ -275,6 +276,7 @@ import DataService from "../services/DataService";
         DataService.update( 1 , this.editedVaccination); //Have to find a way to select ids
       } else {
         this.vaccinations.push(this.editedVaccination)
+        DataService.create(this.editedVaccination);
       }
       this.close()
     },

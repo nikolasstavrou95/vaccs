@@ -1,14 +1,6 @@
 {
   "vaccinations": [
     {
-      "id": 1,
-      "hospital": "Swthria",
-      "patient": "Claudio Costa",
-      "vaccine": "Pfizer",
-      "date": "01/08/2021",
-      "status": "pending"
-    },
-    {
       "id": 2,
       "hospital": "Erikos Ntinan",
       "patient": "Mestra Tatiana",
@@ -39,6 +31,14 @@
       "vaccine": "AstraZenece",
       "date": "26/10/2021",
       "status": "pending"
+    },
+    {
+      "hospital": "Sismanoglio",
+      "patient": "Bob",
+      "vaccine": "Pfizer",
+      "date": "1e1",
+      "status": "Pending",
+      "id": 6
     }
   ]
 }
