@@ -145,7 +145,7 @@
         <template v-slot:no-data>
           <v-btn
             color="primary"
-            @click="initialize"
+            @click="retrieveVaccinations"
           >
             Reset
           </v-btn>
@@ -153,19 +153,17 @@
       </v-data-table>
     </v-app>
   </div>
-</template>
+</template>  
 
 <script>
-  
+
 import DataService from "../services/DataService";
 
-export default {
-  name: "vaccinations-list",
-  data() {
-    return {
-      vaccinations: [],
-      title: "",
-      headers: [
+  export default {
+    data: () => ({
+    dialog: false,
+    dialogDelete: false,
+    headers: [
         {
           text: 'Hospital',
           align: 'start',
@@ -178,8 +176,43 @@ export default {
         { text: 'Status', value: 'status' },
         { text: '', value: 'actions', sortable: false },
       ],
-    };
+    vaccinations: [],
+    editedIndex: -1,
+    editedVaccination: {
+      hospital: '',
+      patient: '',
+      vaccine: '',
+      date: '',
+      status: '',
+    },
+    defaultVaccination: {
+      hospital: '',
+      patient: '',
+      vaccine: '',
+      date: '',
+      status: '',
+    },
+  }),
+
+  computed: {
+    formTitle () {
+      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+    },
   },
+
+  watch: {
+    dialog (val) {
+      val || this.close()
+    },
+    dialogDelete (val) {
+      val || this.closeDelete()
+    },
+  },
+
+  created () {
+    this.retrieveVaccinations()
+  },
+
   methods: {
     retrieveVaccinations() {
       DataService.getAll()
@@ -192,45 +225,39 @@ export default {
         });
     },
 
-    refreshList() {
-      this.retrieveVaccinations();
+    editVaccination (item) {
+      this.editedIndex = this.vaccinations.indexOf(item)
+      this.editedVaccination = Object.assign({}, item)
+      this.dialog = true
     },
 
-    removeAllVaccinations() {
-      DataService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
-          this.refreshList();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    deleteVaccination (item) {
+      this.editedIndex = this.vaccinations.indexOf(item)
+      this.editedVaccination = Object.assign({}, item)
+      this.dialogDelete = true
     },
 
-    searchTitle() {
-      DataService.findByTitle(this.title)
-        .then((response) => {
-          this.tutorials = response.data.map(this.getDisplayTutorial);
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    deleteVaccinationConfirm () {
+      this.vaccinations.splice(this.editedIndex, 1)
+      this.closeDelete()
     },
 
-    editVaccination(item) {
-        console.log("hi!");
+    close () {
+      this.dialog = false
+      this.$nextTick(() => {
+        this.editedVaccination = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
     },
 
-    deleteVaccination(id) {
-      DataService.delete(id)
-        .then(() => {
-          this.refreshList();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    closeDelete () {
+      this.dialogDelete = false
+      this.$nextTick(() => {
+        this.editedVaccination = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
     },
+
     getDisplayVaccination(vaccination) {
       return {
         id: vaccination.id,
@@ -241,11 +268,15 @@ export default {
         status: vaccination.status,
       };
     },
-  
+
+    save () {
+      if (this.editedIndex > -1) {
+        Object.assign(this.vaccinations[this.editedIndex], this.editedVaccination)
+      } else {
+        this.vaccinations.push(this.editedVaccination)
+      }
+      this.close()
+    },
   },
-  mounted() {
-    this.retrieveVaccinations();
-  },
-};
-  
+}
 </script>
