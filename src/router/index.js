@@ -11,6 +11,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    alias:"/vaccinations",
     name: 'Vaccinations',
     component: () => import(/* webpackChunkName: "about" */ '../views/Vaccinations.vue')
     
